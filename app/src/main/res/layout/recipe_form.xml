@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/recipeNameField"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:hint="Enter dish name"
+        android:background="@drawable/rounded_edit_text"
+        android:gravity="center|center"/>
+
+    <EditText
+        android:id="@+id/recipeDescriptionField"
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:layout_marginTop="20dp"
+        android:ems="3"
+        android:hint="Enter description for the dish"
+        android:background="@drawable/rounded_edit_text"
+        android:gravity="center|center"
+        android:inputType="textMultiLine" />
+
+    <EditText
+        android:id="@+id/recipeIngredientsField"
+        android:layout_width="match_parent"
+        android:layout_height="155dp"
+        android:layout_marginTop="20dp"
+        android:ems="5"
+        android:hint="Enter ingredients for the dish"
+        android:background="@drawable/rounded_edit_text"
+        android:gravity="center|center"
+        android:inputType="textMultiLine" />
+
+    <EditText
+        android:id="@+id/recipeInstructionField"
+        android:layout_width="match_parent"
+        android:layout_height="155dp"
+        android:layout_marginTop="20dp"
+        android:ems="5"
+        android:hint="Enter recipe for the dish"
+        android:background="@drawable/rounded_edit_text"
+        android:gravity="center|center"
+        android:inputType="textMultiLine" />
+
+    <ImageView
+        android:id="@+id/recipeImageView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter"
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_marginTop="10dp"
+        android:contentDescription="Recipe Image"
+        android:background="@drawable/rounded_edit_text"
+        android:gravity="center|center"
+        android:clickable="true"
+        android:onClick="onRecipeImageClick" />
+
+</LinearLayout>

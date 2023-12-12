@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.contacts.ContactsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/facebookView"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:contentDescription="masterchef"
+            android:src="@drawable/facebook" />
+
+        <ImageView
+            android:id="@+id/snapChatView"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:contentDescription="masterchef"
+            android:src="@drawable/snapchat" />
+
+        <ImageView
+            android:id="@+id/gmailView"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:contentDescription="masterchef@gmail.com"
+            android:src="@drawable/gmail" />
+
+        <ImageView
+            android:id="@+id/phoneView"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:contentDescription="911"
+            android:src="@drawable/phone" />
+
+        <ImageView
+            android:id="@+id/youtubeView"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:contentDescription="masterchef"
+            android:src="@drawable/youtube" />
+    </LinearLayout>
+
+</FrameLayout>

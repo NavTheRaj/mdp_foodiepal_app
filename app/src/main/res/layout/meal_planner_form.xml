@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <CalendarView
+        android:id="@+id/mealPlannerCalendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/breakfastField"
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:layout_marginTop="5dp"
+        android:ems="3"
+        android:background="@drawable/rounded_edit_text"
+        android:hint="Enter meal for breakfast"
+        android:gravity="center|center"
+        android:inputType="textMultiLine" />
+
+    <EditText
+        android:id="@+id/lunchField"
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:layout_marginTop="5dp"
+        android:ems="3"
+        android:gravity="center|center"
+        android:hint="Enter meal for lunch"
+        android:background="@drawable/rounded_edit_text"
+        android:inputType="textMultiLine" />
+
+    <EditText
+        android:id="@+id/dinnerField"
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:layout_marginTop="5dp"
+        android:ems="3"
+        android:gravity="center|center"
+        android:hint="Enter meal for dinner"
+        android:background="@drawable/rounded_edit_text"
+        android:inputType="textMultiLine" />
+
+</LinearLayout>
