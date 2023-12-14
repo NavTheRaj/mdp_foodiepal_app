@@ -6,5 +6,5 @@ class BlogDataModel(
     val blogTitle: String?,
     val blogPostedBy: String?,
     val blogContent: String?,
-    val commentList: MutableList<CommentDataModel>
+    val commentList: MutableList<CommentDataModel> = mutableListOf()
 ) : Serializable

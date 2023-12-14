@@ -25,16 +25,16 @@
         android:gravity="center|center"
         android:inputType="textMultiLine" />
 
-    <EditText
-        android:id="@+id/recipeIngredientsField"
-        android:layout_width="match_parent"
-        android:layout_height="155dp"
-        android:layout_marginTop="20dp"
-        android:ems="5"
-        android:hint="Enter ingredients for the dish"
-        android:background="@drawable/rounded_edit_text"
-        android:gravity="center|center"
-        android:inputType="textMultiLine" />
+<!--    <EditText-->
+<!--        android:id="@+id/recipeIngredientsField"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="155dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:ems="5"-->
+<!--        android:hint="Enter ingredients for the dish"-->
+<!--        android:background="@drawable/rounded_edit_text"-->
+<!--        android:gravity="center|center"-->
+<!--        android:inputType="textMultiLine" />-->
 
     <EditText
         android:id="@+id/recipeInstructionField"
@@ -48,9 +48,12 @@
         android:inputType="textMultiLine" />
 
     <ImageView
+        android:tooltipText="Recipe Image Upload"
         android:id="@+id/recipeImageView"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:padding="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:scaleType="fitCenter"
         android:src="@android:drawable/ic_menu_gallery"
         android:layout_marginTop="10dp"

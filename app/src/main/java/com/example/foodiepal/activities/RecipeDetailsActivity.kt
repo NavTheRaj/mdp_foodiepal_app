@@ -2,6 +2,7 @@ package com.example.foodiepal.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import com.example.foodiepal.R
@@ -18,40 +19,21 @@ class RecipeDetailsActivity : AppCompatActivity() {
             recipeDetailsObj = bundle.getParcelable("RECIPE_OBJECT") as RecipeDataModel?
         }
 
-//        var toolbar = findViewById<Toolbar>(R.id.toolbar)
-//        setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-//        toolbar.navigationIcon?.setTint(resources.getColor(android.R.color.white))
 
         var recipeNameTxt = findViewById<TextView>(R.id.recipeNameLabel)
         var recipeDescTxt = findViewById<TextView>(R.id.descriptionTextView)
-        var ingredientsTxt = findViewById<TextView>(R.id.ingredientsTextView)
         var instructionTxt = findViewById<TextView>(R.id.instructionTextView)
+        var foodAvatar = findViewById<ImageView>(R.id.foodAvatar);
 
         recipeNameTxt.text = recipeDetailsObj?.recipeName.toString()
         recipeDescTxt.text = recipeDetailsObj?.recipeDescription.toString()
-        ingredientsTxt.text = recipeDetailsObj?.recipeIngredients.toString()
         instructionTxt.text = recipeDetailsObj?.recipeInstructions.toString()
-
-//        productImageView.setImageResource(productObj?.productImage!!)
-//        productLogoView.setImageResource(productObj?.productLogo!!)
-//
-//        val decimalFormat = DecimalFormat("#.##")
-//        val priceStr = "$" + decimalFormat.format(productObj?.productPrice)
-//
-//        productNameTxt.setText(productObj?.productName.toString())
-//        productDescTxt.setText(productObj?.productDescription.toString())
-//        productPriceTxt.setText(priceStr)
-//
-//        homeBtn.setOnClickListener {
-//            var intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//        }
+        foodAvatar.setImageURI(recipeDetailsObj?.recipeImage);
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        // Handle the back button click
         onBackPressed()
         return true
     }

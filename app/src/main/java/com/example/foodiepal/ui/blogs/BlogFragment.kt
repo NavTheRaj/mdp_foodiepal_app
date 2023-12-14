@@ -1,6 +1,6 @@
 package com.example.foodiepal.ui.blogs
 
-import CommentListAdapter
+import com.example.foodiepal.adapter.CommentListAdapter
 import android.app.AlertDialog
 import android.content.Context
 import android.content.SharedPreferences
@@ -32,11 +32,7 @@ class BlogFragment : Fragment() {
             "Massimo Bottura",
             " .A culinary masterpiece. The Jerusalem artichokes are roasted to perfection, with a slightly crispy exterior and a creamy, melt-in-your-mouth interior. The Burnt Hay Butter adds a rich, smoky flavor that is both complex and sophisticated. This dish is a must-try for any fan of fine dining.",
             mutableListOf<CommentDataModel>(
-                CommentDataModel(
-                    "If you are looking for a unique and unforgettable dining experience, Noma is the place to go. The restaurant's tasting menu is a culinary adventure that will leave you wanting more. If you have the opportunity to dine at Noma, be sure to order the Roasted Jerusalem Artichokes with Burnt Hay Butter. You won't be disappointed.",
-                    "Anne Hathaway",
-                    LocalDateTime.now()
-                ), CommentDataModel(
+            CommentDataModel(
                     "This dish is not only delicious, but it is also incredibly beautiful to look at. The Jerusalem artichokes are presented in a striking arrangement, and the Burnt Hay Butter adds a touch of drama. This dish is truly a feast for the eyes and the senses.",
                     "James Bond",
                     LocalDateTime.now()
@@ -52,16 +48,13 @@ class BlogFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(BlogModel::class.java)
-
+        val notificationsViewModel = ViewModelProvider(this).get(BlogModel::class.java)
         _binding = FragmentBlogsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        sharedPreferences =
-            requireActivity().getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE)
+        sharedPreferences = requireActivity().getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE)
 
         var recyclerView = binding.blogRecyclerView
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.layoutManager = LinearLayoutManager(requireContext()) // Set the layout manager
         val blogListAdapter = BlogListAdapter(
             requireContext(),
             sharedPreferences.getString("username", null).toString(),

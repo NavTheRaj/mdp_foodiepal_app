@@ -23,13 +23,12 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import java.util.Date
 
 class MealPlannerFragment : Fragment() {
 
     private var _binding: FragmentMealPlannerBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     private val mealPlanList = mutableListOf<MealPlannerDataModel>(
@@ -78,6 +77,7 @@ class MealPlannerFragment : Fragment() {
 
         var addNewMealPlanBtn = binding.addNewMealPlanBtn
         var recyclerView = binding.mealPlanRecycleView
+
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         val mealPlannerAdapter = MealPlanListAdapter(requireContext(), mealPlanList)
         recyclerView.adapter = mealPlannerAdapter
@@ -101,6 +101,7 @@ class MealPlannerFragment : Fragment() {
                 dialog.dismiss()
             }
 
+            mealPlannerFormBuilder.setNeutralButton("Reset",null);
             mealPlannerFormBuilder.setPositiveButton("Save Meal Plan") { dialog, which ->
                 val breakfastField = mealPlannerFormView.findViewById<EditText>(R.id.breakfastField)
                 val lunchField = mealPlannerFormView.findViewById<EditText>(R.id.lunchField)
@@ -125,6 +126,23 @@ class MealPlannerFragment : Fragment() {
 
             val mealPlannerDialog = mealPlannerFormBuilder.create()
             mealPlannerDialog.show()
+
+            mealPlannerDialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener{
+           // clear everything
+                val breakfastField = mealPlannerFormView.findViewById<EditText>(R.id.breakfastField)
+                val lunchField = mealPlannerFormView.findViewById<EditText>(R.id.lunchField)
+                val dinnerField = mealPlannerFormView.findViewById<EditText>(R.id.dinnerField)
+                val mealPlanDateField =
+                    mealPlannerFormView.findViewById<CalendarView>(R.id.mealPlannerCalendarView)
+
+                // Reset the fields
+                breakfastField.text.clear()
+                lunchField.text.clear()
+                dinnerField.text.clear()
+
+                // Set the date to the current date
+                mealPlanDateField.date = System.currentTimeMillis()
+            }
         }
 
         return root

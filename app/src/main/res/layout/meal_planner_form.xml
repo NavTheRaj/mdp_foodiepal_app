@@ -14,7 +14,7 @@
     <EditText
         android:id="@+id/breakfastField"
         android:layout_width="match_parent"
-        android:layout_height="105dp"
+        android:layout_height="50dp"
         android:layout_marginTop="5dp"
         android:ems="3"
         android:background="@drawable/rounded_edit_text"
@@ -25,7 +25,7 @@
     <EditText
         android:id="@+id/lunchField"
         android:layout_width="match_parent"
-        android:layout_height="105dp"
+        android:layout_height="50dp"
         android:layout_marginTop="5dp"
         android:ems="3"
         android:gravity="center|center"
@@ -36,7 +36,7 @@
     <EditText
         android:id="@+id/dinnerField"
         android:layout_width="match_parent"
-        android:layout_height="105dp"
+        android:layout_height="50dp"
         android:layout_marginTop="5dp"
         android:ems="3"
         android:gravity="center|center"

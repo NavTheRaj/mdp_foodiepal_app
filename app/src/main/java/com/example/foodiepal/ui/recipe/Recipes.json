@@ -2,35 +2,30 @@
   {
     "recipeName": "Spaghetti Bolognese",
     "recipeDescription": "Classic Italian pasta dish with rich meat sauce.",
-    "recipeIngredients": "400g spaghetti\n200g ground beef\n1 onion, diced\n2 cloves garlic, minced\n400g canned tomatoes\n2 tbsp tomato paste\n1 tsp dried oregano\nSalt and pepper to taste",
     "recipeInstructions": "1. Cook spaghetti according to package instructions.\n2. In a pan, brown ground beef with onions and garlic.\n3. Add tomatoes, tomato paste, oregano, salt, and pepper. Simmer for 15 minutes.\n4. Serve sauce over cooked spaghetti.",
     "recipeImage": "spaghetti_bolognese.jpg"
   },
   {
     "recipeName": "Chicken Stir Fry",
     "recipeDescription": "Quick and healthy stir-fried chicken with vegetables.",
-    "recipeIngredients": "500g boneless chicken, sliced\n1 bell pepper, sliced\n1 cup broccoli florets\n2 carrots, julienned\n3 tbsp soy sauce\n1 tbsp sesame oil\n2 cloves garlic, minced",
     "recipeInstructions": "1. Heat sesame oil in a wok and sauté garlic.\n2. Add chicken and cook until browned.\n3. Add vegetables and stir-fry until tender.\n4. Pour soy sauce and toss everything together.",
     "recipeImage": "chcken_stir_fry.jpg"
   },
   {
     "recipeName": "Vegetarian Pizza",
     "recipeDescription": "Homemade pizza with fresh vegetables and cheese.",
-    "recipeIngredients": "1 pizza dough\n1/2 cup tomato sauce\n1 bell pepper, sliced\n1 red onion, thinly sliced\n1 cup mushrooms, sliced\n1 cup mozzarella cheese, shredded\n1 tbsp olive oil",
     "recipeInstructions": "1. Preheat oven to 450°F (230°C).\n2. Roll out pizza dough and spread tomato sauce.\n3. Arrange vegetables and sprinkle with cheese.\n4. Drizzle with olive oil and bake for 15-20 minutes.",
     "recipeImage": "veg_pizza.jpg"
   },
   {
     "recipeName": "Banana Bread",
     "recipeDescription": "Moist and delicious banana bread recipe.",
-    "recipeIngredients": "3 ripe bananas, mashed\n1/2 cup butter, melted\n1 tsp vanilla extract\n1 cup sugar\n2 cups all-purpose flour\n1 tsp baking soda\n1/2 tsp salt",
     "recipeInstructions": "1. Preheat oven to 350°F (175°C).\n2. Mix mashed bananas, melted butter, and vanilla extract.\n3. In a separate bowl, combine sugar, flour, baking soda, and salt.\n4. Combine wet and dry ingredients, pour into a greased loaf pan, and bake for 60 minutes.",
     "recipeImage": "banana_bread.jpg"
   },
   {
     "recipeName": "Greek Salad",
     "recipeDescription": "Refreshing salad with tomatoes, cucumbers, and feta cheese.",
-    "recipeIngredients": "2 tomatoes, diced\n1 cucumber, sliced\n1 red onion, thinly sliced\n200g feta cheese, crumbled\nKalamata olives\n3 tbsp olive oil\n1 tbsp red wine vinegar\n1 tsp dried oregano",
     "recipeInstructions": "1. Combine tomatoes, cucumber, red onion, feta cheese, and olives in a bowl.\n2. In a small bowl, whisk together olive oil, red wine vinegar, and oregano.\n3. Pour dressing over the salad and toss gently before serving.",
     "recipeImage": "greek_salad.jpg"
   }

@@ -1,13 +1,8 @@
 package com.example.foodiepal.ui.recipe
-
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.content.res.Resources
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -17,20 +12,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.foodiepal.R
 import com.example.foodiepal.adapter.RecipeListAdapter
 import com.example.foodiepal.databinding.FragmentRecipeBinding
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import java.io.File
 import java.io.IOException
 import java.nio.charset.Charset
 
@@ -38,30 +30,25 @@ class RecipeFragment : Fragment() {
 
     private var _binding: FragmentRecipeBinding? = null
     private val recipeList: MutableList<RecipeDataModel> = mutableListOf()
+    private lateinit var recipeImageView: ImageView // Declare the ImageView
+
     private val recipeListAdapter: RecipeListAdapter by lazy {
         RecipeListAdapter(requireContext(), recipeList)
-    }
-    private val recipeFormBuilder: RecipeFormBuilder by lazy {
-        RecipeFormBuilder(requireContext(), ::onImageSelected)
     }
 
     private val binding get() = _binding!!
 
-    private fun onImageSelected(uri: Uri?) {
-        // Handle the selected image URI, you can use it as needed
-        Log.i("Image selected", uri.toString())
-    }
+    private var selectedImageUri: Uri? = null
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        Log.i("ActivityResult", "requestCode: $requestCode, resultCode: $resultCode")
-
-        if (requestCode == RecipeFormBuilder.PICK_IMAGE_REQUEST_CODE &&
-            resultCode == Activity.RESULT_OK && data != null
-        ) {
-            recipeFormBuilder.handleImageSelection(data.data)
+    private val startForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+                data?.let {
+                    handleImageSelection(it.data)
+                }
+            }
         }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -77,15 +64,91 @@ class RecipeFragment : Fragment() {
         loadRecipesFromJson()
 
         binding.addNewRecipeBtn.setOnClickListener {
-            recipeFormBuilder.showForm()
+            showRecipeForm()
         }
 
         return root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun showRecipeForm() {
+        val recipeFormView = LayoutInflater.from(requireContext())
+            .inflate(R.layout.recipe_form, null)
+
+        val recipeNameField = recipeFormView.findViewById<EditText>(R.id.recipeNameField)
+        val recipeDescriptionField =
+            recipeFormView.findViewById<EditText>(R.id.recipeDescriptionField)
+//        val recipeIngredientsField =
+//            recipeFormView.findViewById<EditText>(R.id.recipeIngredientsField)
+        val recipeInstructionField =
+            recipeFormView.findViewById<EditText>(R.id.recipeInstructionField)
+        recipeImageView = recipeFormView.findViewById(R.id.recipeImageView)
+
+        val builder = AlertDialog.Builder(requireContext())
+            .setTitle("Add new recipe")
+            .setView(recipeFormView)
+            .setNeutralButton("Reset",null)
+            .setPositiveButton("Save Recipe",null)
+            .setNegativeButton("Cancel",null)
+
+
+        recipeImageView.setOnClickListener {
+            openImagePicker()
+        }
+
+        val recipeDialog = builder.create()
+        recipeDialog.show()
+        recipeDialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener{
+            recipeNameField.text.clear()
+            recipeDescriptionField.text.clear()
+//            recipeIngredientsField.text.clear()
+            recipeInstructionField.text.clear()
+            selectedImageUri = null
+            recipeImageView.setImageURI(null)
+        }
+
+        recipeDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener{
+            selectedImageUri?.let {
+                val recipeData = RecipeDataModel(
+                    recipeNameField.text.toString(),
+                    recipeDescriptionField.text.toString(),
+//                    recipeIngredientsField.text.toString(),
+                    recipeInstructionField.text.toString(),
+                    it
+                )
+
+                Log.i("RecipeData", recipeData.toString())
+                onImageSelected(it)
+                recipeList.add(recipeData)
+                recipeListAdapter.notifyDataSetChanged();
+                Log.i("RecipeData", recipeData.toString())
+                recipeDialog.dismiss()
+                Toast.makeText(context,"Added a new recipe",Toast.LENGTH_SHORT)
+            }
+        }
+
+        recipeDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener{
+            Toast.makeText(context,"Cancelled",Toast.LENGTH_SHORT)
+            recipeDialog.dismiss()
+        }
+    }
+
+    private fun openImagePicker() {
+        if (startForResult != null) {
+            val pickImageIntent = Intent(
+                Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            )
+            startForResult.launch(pickImageIntent)
+        } else {
+            Log.e("RecipeFragment", "startForResult is null")
+        }
+    }
+
+    private fun onImageSelected(uri: Uri) {
+        Log.i("Image selected", uri.toString())
+
+        // Handle the selected image URI, you can use it as needed
+        recipeImageView.setImageURI(uri)
     }
 
     private fun loadRecipesFromJson() {
@@ -98,17 +161,19 @@ class RecipeFragment : Fragment() {
 
                 val imageWithOutExt = jsonObject.getString("recipeImage").split(".")[0]
                 Log.i("Image without extension", imageWithOutExt)
-                val imagePath = "android.resource://${requireContext().packageName}/drawable/$imageWithOutExt"
+                val imagePath =
+                    "android.resource://${requireContext().packageName}/drawable/$imageWithOutExt"
                 val imageUri = Uri.parse(imagePath)
 
                 val recipe = RecipeDataModel(
                     jsonObject.getString("recipeName"),
                     jsonObject.getString("recipeDescription"),
-                    jsonObject.getString("recipeIngredients"),
+//                    jsonObject.getString("recipeIngredients"),
                     jsonObject.getString("recipeInstructions"),
                     imageUri
                 )
                 recipeList.add(recipe)
+
             }
         } catch (e: JSONException) {
             e.printStackTrace()
@@ -131,5 +196,14 @@ class RecipeFragment : Fragment() {
         return json
     }
 
+    private fun handleImageSelection(uri: Uri?) {
+        selectedImageUri = uri
+        Log.i("SelectedImage", selectedImageUri.toString())
+        onImageSelected(selectedImageUri!!)
+    }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

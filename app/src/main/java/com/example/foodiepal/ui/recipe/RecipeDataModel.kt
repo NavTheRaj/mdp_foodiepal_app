@@ -7,13 +7,12 @@ import android.os.Parcelable
 data class RecipeDataModel(
     val recipeName: String?,
     val recipeDescription: String?,
-    val recipeIngredients: String?,
+//    val recipeIngredients: String?,
     val recipeInstructions: String?,
     val recipeImage: Uri? = null
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
-        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -23,7 +22,6 @@ data class RecipeDataModel(
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(recipeName)
         parcel.writeString(recipeDescription)
-        parcel.writeString(recipeIngredients)
         parcel.writeString(recipeInstructions)
         parcel.writeParcelable(recipeImage, flags)
     }

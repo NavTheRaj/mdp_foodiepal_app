@@ -117,12 +117,12 @@ class RecipeListAdapter(
 
                 decodeAndCompressBitmap(context, imageUri, options, compressionQuality)
             } else {
-                Log.e("RecipeFragment", "Image Uri is null")
+                Log.e("com.example.foodiepal.ui.recipe.RecipeFragment", "Image Uri is null")
                 null
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            Log.e("RecipeFragment", "Error decoding image from Uri: $imageUri", e)
+            Log.e("com.example.foodiepal.ui.recipe.RecipeFragment", "Error decoding image from Uri: $imageUri", e)
             null
         }
     }
@@ -153,7 +153,7 @@ class RecipeListAdapter(
             BitmapFactory.decodeByteArray(compressedBitmapData, 0, compressedBitmapData.size)
         } catch (e: Exception) {
             e.printStackTrace()
-            Log.e("RecipeFragment", "Error decoding and compressing bitmap from Uri: $imageUri", e)
+            Log.e("com.example.foodiepal.ui.recipe.RecipeFragment", "Error decoding and compressing bitmap from Uri: $imageUri", e)
             null
         }
     }

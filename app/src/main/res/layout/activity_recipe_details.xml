@@ -24,6 +24,26 @@
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
+            <ImageView
+                android:id="@+id/foodAvatar"
+                android:padding="20dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_centerHorizontal="true"
+                android:clickable="false"
+                android:focusable="false"
+                app:flow_horizontalAlign="center"
+                app:flow_verticalAlign="center"
+                android:focusableInTouchMode="false"
+                app:layout_constraintVertical_bias="0.0"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:elevation="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/descriptionCardView"
                 android:layout_width="match_parent"
@@ -44,13 +64,17 @@
                         android:id="@+id/descriptionLabel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="@color/green"
                         android:text="Details"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/descriptionLabel"
-                        app:layout_constraintVertical_bias="0.0" />
+                        app:layout_constraintVertical_bias="0.0"
+                        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                        />
 
                     <TextView
                         android:id="@+id/descriptionTextView"
@@ -61,48 +85,6 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/descriptionLabel" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/ingredientsCardView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                app:cardCornerRadius="10dp"
-                android:elevation="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:id="@+id/ingredientsLabel"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="INGREDIENTS:"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/ingredientsLabel"
-                        app:layout_constraintVertical_bias="0.0" />
-
-                    <TextView
-                        android:id="@+id/ingredientsTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:justificationMode="inter_word"
-                        android:text=""
-                        android:textSize="20sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/ingredientsLabel" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
@@ -127,13 +109,17 @@
                         android:id="@+id/instructionLabel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="INSTRUCTIONS:"
+                        android:text="Instructions"
                         android:textSize="20sp"
                         android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:textColor="@color/green"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
+                        app:layout_constraintVertical_bias="0.0"
+                        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                        />
 
                     <TextView
                         android:id="@+id/instructionTextView"
